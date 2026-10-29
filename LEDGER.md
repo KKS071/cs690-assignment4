@@ -48,3 +48,58 @@ changed:   wrote "copy it without the line numbers" into the read_file and edit_
 ```
 
 ## My entries
+
+## Entry 1
+artifact:  Part 0 setup: .env and .gitignore
+tool:      none (setup by hand), 2026-10-29
+prompts:   none
+review:    TODO: my provider, model, and the two prices
+checks:    python -m agent check-setup: TODO result
+evidence:  HANDOUT Part 0
+risk:      TODO
+
+## Entry 2
+artifact:  agent/tools.py at commit TODO-SHA
+tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-29
+prompts:   asked for Part 1 written from the comments in the starter file; prompts/code-parts1-5.md
+review:    TODO: what I read line by line, what I changed or rejected, and why
+checks:    pytest tests/test_tools.py: 16 passed
+evidence:  HANDOUT Part 1; the comments above each tool
+risk:      TODO: what the public tests do not cover
+
+## Entry 3
+artifact:  agent/policy.py at commit TODO-SHA
+tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-29
+prompts:   asked for Part 2 written from the comments in the starter file; prompts/code-parts1-5.md
+review:    TODO: what I read line by line, what I changed or rejected, and why
+checks:    pytest tests/test_policy.py: 7 passed
+evidence:  HANDOUT Part 2; the comments above gate_for, budget_stop, is_stuck
+risk:      TODO: what the public tests do not cover
+
+## Entry 4
+artifact:  agent/loop.py at commit TODO-SHA
+tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-29
+prompts:   asked for Part 3 written from the comments in the starter file; prompts/code-parts1-5.md
+review:    TODO: what I read line by line, what I changed or rejected, and why
+checks:    pytest tests/test_loop.py: 9 passed
+evidence:  HANDOUT Part 3; the comment above run_agent, steps 1 to 5
+risk:      TODO: what the public tests do not cover
+
+## Entry 5
+artifact:  agent/reflexion.py at commit TODO-SHA
+tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-29
+prompts:   asked for Part 4 written from the comments in the starter file; prompts/code-parts1-5.md
+review:    TODO: what I read line by line, what I changed or rejected, and why
+checks:    pytest tests/test_reflexion.py: 5 passed
+evidence:  HANDOUT Part 4; the comments above judge, write_lesson, reflexion
+risk:      TODO: what the public tests do not cover
+
+## Entry 6
+artifact:  server.py at commit TODO-SHA
+tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-29
+prompts:   asked for Part 5 written from the comments in the starter file; prompts/code-parts1-5.md
+review:    TODO: what I read line by line, what I changed or rejected, and why
+checks:    pytest: 40 passed; python -m agent check-mcp: all checks passed
+evidence:  HANDOUT Part 5; the server.py docstring
+risk:      TODO: what the public tests do not cover
+
