@@ -1,0 +1,89 @@
+PASS  start server.py over stdio and connect
+
+tools/list returned (this is all the model ever sees of each tool):
+[
+  {
+    "name": "list_files",
+    "description": "List every file in the project, one path per line, relative to the project folder.\n\n    Takes no inputs. Use it first to see what the project contains; the paths it returns\n    are the paths read_file and edit_file expect.\n    ",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "title": "list_filesArguments"
+    }
+  },
+  {
+    "name": "read_file",
+    "description": "Read part of one text file in the project, with a line number in front of each line.\n\n    Inputs: path is the file's path relative to the project folder, as list_files shows it\n    (for example discounts.py). start is the first line to show (1 is the top of the file).\n    limit is how many lines to show; at most 200 are returned in one call.\n    Returns a header line \"PATH, lines START to END of TOTAL\", then one line per file line\n    written as \"  12: text\". If more lines remain, the last line tells you the start to use\n    next. The line numbers are not part of the file: when you copy text into edit_file,\n    leave out the number and the colon and space after it.\n    ",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "start": {
+          "default": 1,
+          "title": "Start",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 80,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "read_fileArguments"
+    }
+  },
+  {
+    "name": "edit_file",
+    "description": "Replace one exact piece of text in one project file with new text.\n\n    Inputs: path is the file's path relative to the project folder (for example\n    discounts.py). old_text is the exact text to replace, copied from read_file without the\n    line numbers, keeping every space and indent. It must appear exactly once in the file,\n    so include enough surrounding lines to make it unique. new_text is what to put in its\n    place; use \"\" to delete old_text.\n    Returns \"Edited PATH: replaced 1 match.\" on success. If old_text is missing, empty, or\n    appears more than once, nothing is changed and the error says what to fix.\n    A person reviews every edit and may reject it with a reason. Files in tests/ cannot be\n    edited. Make one small edit at a time.\n    ",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "old_text": {
+          "title": "Old Text",
+          "type": "string"
+        },
+        "new_text": {
+          "title": "New Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "old_text",
+        "new_text"
+      ],
+      "title": "edit_fileArguments"
+    }
+  },
+  {
+    "name": "run_tests",
+    "description": "Run every unit test in the project's tests/ folder and report the result.\n\n    Takes no inputs. Returns \"PASSED: N of N tests passed.\" when everything passes.\n    Otherwise the first line is \"FAILED: K of N tests did not pass.\", followed by one line\n    per failing test (at most 10): FAIL or ERROR, the test name, and the last line of its\n    error. Passing tests and tracebacks are not shown. Run it before your first edit to see\n    what fails, and after each edit to check it. The tests stop after 20 seconds.\n    ",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "title": "run_testsArguments"
+    }
+  }
+]
+
+PASS  the server offers the four tools, in order: list_files, read_file, edit_file, run_tests
+PASS  list_files: description matches its docstring in agent/tools.py
+PASS  read_file: description matches its docstring in agent/tools.py
+PASS  edit_file: description matches its docstring in agent/tools.py
+PASS  run_tests: description matches its docstring in agent/tools.py
+PASS  tools/call list_files: discounts.py, spec.md, tests/__init__.py, tests/test_discounts.py
+PASS  tools/call run_tests: FAILED: 1 of 4 tests did not pass.
+PASS  a refused edit comes back with isError true and your message: Error executing tool edit_file: old_text appears 0 times in discounts.py. Read the file again with read_file and copy th
+PASS  the server refuses a path outside the project: Error executing tool read_file: ../judge/acceptance_test.py is outside the project folder. Use a path inside it, such as
+
+check-mcp: all checks passed.
