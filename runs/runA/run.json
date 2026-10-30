@@ -1,0 +1,28 @@
+{
+  "name": "runA",
+  "tools": "local",
+  "judge_mode": "after",
+  "max_attempts": 1,
+  "task": "Make the tests pass.",
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "price_input_per_mtok": 0.2,
+  "price_output_per_mtok": 1.2,
+  "limits": {
+    "max_steps": 15,
+    "max_tokens": 150000
+  },
+  "notes_at_start": "",
+  "git_commit": "5dbea1a",
+  "python": "3.12.3",
+  "started": "2026-10-30T00:56:48+00:00",
+  "result": {
+    "passed": true,
+    "attempts": 1,
+    "statuses": [
+      "done"
+    ],
+    "lessons": []
+  },
+  "finished": "2026-10-30T00:58:37+00:00"
+}
