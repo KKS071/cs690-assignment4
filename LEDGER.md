@@ -137,7 +137,7 @@ risk:      the lesson's tokens are not counted against the step or token budget,
 
 ## Entry 6
 artifact:  server.py at commit 810ebd3
-tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-30
+tool:      Claude (claude.ai), model Claude Opus 5.5, 2026-10-29
 prompts:   asked for help with Part 5 written from the server.py docstring;
            prompts/code-parts1-5.md
 review:    checked that mcp.run is only reached through main() under
